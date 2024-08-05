@@ -1,4 +1,4 @@
-# React Vite (React Test Fresher)
+# React Vite - Book-shop-project
 - React 18
 - React Router 6
 - Redux Tookit
@@ -11,7 +11,7 @@ https://nodejs.org/download/release/v16.13.1/
 
 Các bước cài đặt: (chế độ development)
 1. clone code
-2. cài đặt thư viện: npm i
+2. Cài đặt thư viện: npm i
 3. Update file .env.development (nếu cần thiết)
 4. Chạy dự án: npm run dev
 
