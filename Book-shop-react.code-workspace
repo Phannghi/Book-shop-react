@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../React-quiz-project"
 		}
 	],
 	"settings": {}

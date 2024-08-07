@@ -11,6 +11,24 @@ import Footer from './components/Footer/index';
 import Home from './components/Home/index';
 import Register from './pages/register';
 import './app.scss'
+import { notification, message } from 'antd';
+
+notification.config({
+  placement: 'topRight',
+  top: 30,
+  duration: 3,
+  // rtl: true, // Loại bỏ cấu hình rtl ở đây
+  showProgress: true,
+  pauseOnHover: true,
+  closeIcon: true,
+});
+
+message.config({
+  top: 30,
+  duration: 3,
+  maxCount: 3,
+  // rtl: true, // Loại bỏ cấu hình rtl ở đây
+});
 const Layout = () => {
   return (
     <div>
