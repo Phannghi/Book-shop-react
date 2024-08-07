@@ -9,14 +9,15 @@ import { Outlet } from "react-router-dom";
 import Header from './components/Header';
 import Footer from './components/Footer/index';
 import Home from './components/Home/index';
-
+import Register from './pages/register';
+import './app.scss'
 const Layout = () => {
   return (
     <div>
       <div id="layout-app">
-        <Header />
+        {/* <Header /> */}
         <Outlet />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   )
@@ -42,7 +43,11 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />
-  }
+  },
+  {
+    path: "register",
+    element: <Register />,
+  },
 ]);
 
 export default function App() {
