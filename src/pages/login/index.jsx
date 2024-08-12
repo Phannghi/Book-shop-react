@@ -5,25 +5,30 @@ import '../register/register.scss';
 import { useNavigate } from 'react-router-dom'
 import { postLogin } from '../../services/apiService';
 import { message } from "antd";
+import { useDispatch } from 'react-redux';
+import { doLoginAction } from '../../redux/account/accountSlide';
 
 const LoginPage = (props) => {
     const navigate = useNavigate();
     const [isSubmit, setIsSubmit] = useState(false);
 
+    const dispatch = useDispatch();
     const onFinish = async (values) => {
         const { email, password } = values;
         setIsSubmit(true);
         let res = await postLogin(email, password);
         //console.log('check res: ', res);
         setIsSubmit(false);
-        if (res?.data?.access_token) {
+        if (res?.data) {
+            localStorage.setItem('access_token', res.data.access_token);
+            dispatch(doLoginAction(res.data.user))
             message.success('Đăng nhập thành công');
             navigate('/');
         }
         else {
             notification.error({
                 message: 'Có lỗi xảy ra',
-                description: res.message,
+                description: res.message && Array.isArray(res.message) ? res.message[0] : res.message,
                 duration: 3,
             })
         }
@@ -33,7 +38,7 @@ const LoginPage = (props) => {
     return (
         <div className='register-container'>
             <Row justify='center' align='middle'>
-                <Col span={6}>
+                <Col span={8}>
                     <Card
                         bordered={false}
                         style={{

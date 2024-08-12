@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -12,6 +12,9 @@ import Home from './components/Home/index';
 import Register from './pages/register';
 import './app.scss'
 import { notification, message } from 'antd';
+import { getFetchAccount } from './services/apiService';
+import { useDispatch } from 'react-redux';
+import { doGetAccountAction } from './redux/account/accountSlide';
 
 notification.config({
   placement: 'topRight',
@@ -69,6 +72,16 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
+  const dispatch = useDispatch();
+  const getAccount = async () => {
+    const res = await getFetchAccount();
+    if (res && res.data) {
+      dispatch(doGetAccountAction(res.data));
+    }
+  }
+  useEffect(() => {
+    getAccount();
+  }, [])
   return (
     <>
       <RouterProvider router={router} />
